@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@daedongyeojido-fe-v3.5/design-token": [
+        "libs/design-token/src/index.ts"
+      ],
+      "@daedongyeojido-fe-v3.5/hooks": ["libs/hooks/src/index.ts"],
+      "@daedongyeojido-fe-v3.5/ui": ["libs/ui/src/index.ts"],
+      "@daedongyeojido-fe-v3.5/untils": ["libs/untils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
