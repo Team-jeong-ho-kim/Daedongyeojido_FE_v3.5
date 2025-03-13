@@ -1,5 +1,5 @@
 {
-  "name": "@daedongyeojido-fe-v3.5/design-token",
+  "name": "@daedong/design-token",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
