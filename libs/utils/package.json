@@ -1,5 +1,5 @@
 {
-  "name": "@daedongyeojido-fe-v3.5/untils",
+  "name": "@daedong/utils",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
