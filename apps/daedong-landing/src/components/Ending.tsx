@@ -154,7 +154,7 @@ const EndingAll = styled.div`
   padding-left: 12%;
   padding-top: 10%;
   display: flex;
-  padding-bottom: 20%;
+  overflow: hidden;
 
   @keyframes fadeInUp {
     0% {

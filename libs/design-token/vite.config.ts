@@ -18,10 +18,21 @@ export default defineConfig(() => ({
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
   ],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  
+  // 의존성 최적화 설정 추가
+  optimizeDeps: {
+    include: ['@emotion/react', '@emotion/styled', '@fontsource/pretendard']
+  },
+  
+  // 모듈 해결을 위한 설정 추가
+  resolve: {
+    alias: {
+      '@emotion/react': path.resolve(__dirname, '../../node_modules/@emotion/react'),
+      '@emotion/styled': path.resolve(__dirname, '../../node_modules/@emotion/styled'),
+      '@fontsource/pretendard': path.resolve(__dirname, '../../node_modules/@fontsource/pretendard')
+    }
+  },
+  
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
@@ -42,7 +53,7 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', '@emotion/react', '@emotion/styled', '@fontsource/pretendard'],
     },
   },
 }));
