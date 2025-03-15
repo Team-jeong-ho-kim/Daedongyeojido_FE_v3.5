@@ -1,69 +1,99 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import {
-  slide1Icon,
-  slide2Icon,
-  slide3Icon,
+  slider1Icon,
+  slider2Icon,
+  slider3Icon,
+  slider4Icon,
+  slider5Icon,
   leftArrowIcon,
   rightArrowIcon,
 } from '@daedongyeojido-fe-v3.5/ui';
 
 export const Slider = () => {
-  const slides = [slide1Icon, slide2Icon, slide3Icon].filter(Boolean);
+  const slides = [
+    slider1Icon,
+    slider2Icon,
+    slider3Icon,
+    slider4Icon,
+    slider5Icon,
+  ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    if (slides.length <= 1) return;
-
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentSlide, slides]);
+  const [direction, setDirection] = useState('next');
+  const [animating, setAnimating] = useState(false);
 
   const handlePrev = () => {
-    let prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-    while (!slides[prevIndex]) {
-      prevIndex = prevIndex === 0 ? slides.length - 1 : prevIndex - 1;
-    }
-    setCurrentSlide(prevIndex);
+    if (animating) return;
+
+    setDirection('prev');
+    setAnimating(true);
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    let nextIndex = (currentSlide + 1) % slides.length;
-    while (!slides[nextIndex]) {
-      nextIndex = (nextIndex + 1) % slides.length;
-    }
-    setCurrentSlide(nextIndex);
+    if (animating) return;
+
+    setDirection('next');
+    setAnimating(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
+
+  const handleIndicatorClick = (index: any) => {
+    if (animating || index === currentSlide) return;
+
+    setDirection(index > currentSlide ? 'next' : 'prev');
+    setAnimating(true);
+    setCurrentSlide(index);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimating(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
 
   return (
     <SliderContainer>
-      <SlideWrapper currentSlide={currentSlide} totalSlides={slides.length}>
+      <SlideViewport>
         {slides.map((slide, index) => (
-          <Slide key={index}>
-            <img src={slide} alt={`Slide ${index + 1}`} />
+          <Slide
+            key={index}
+            isVisible={index === currentSlide}
+            direction={direction}
+            animating={animating}
+          >
+            <SlideImage src={slide} alt={`Slide ${index + 1}`} />
           </Slide>
         ))}
-      </SlideWrapper>
+      </SlideViewport>
 
-      {slides.length > 1 && (
-        <Controls>
-          <ControlBtn onClick={handlePrev}>
-            <img src={leftArrowIcon} alt="Previous" />
-          </ControlBtn>
-          <ControlBtn onClick={handleNext}>
-            <img src={rightArrowIcon} alt="Next" />
-          </ControlBtn>
-        </Controls>
-      )}
+      <Controls>
+        <ControlBtn onClick={handlePrev} disabled={animating}>
+          <img src={leftArrowIcon} alt="Previous" />
+        </ControlBtn>
+        <ControlBtn onClick={handleNext} disabled={animating}>
+          <img src={rightArrowIcon} alt="Next" />
+        </ControlBtn>
+      </Controls>
+
+      <Indicators>
+        {slides.map((_, index) => (
+          <Indicator
+            key={index}
+            active={index === currentSlide}
+            onClick={() => handleIndicatorClick(index)}
+          />
+        ))}
+      </Indicators>
     </SliderContainer>
   );
 };
 
 const SliderContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: relative;
   display: flex;
@@ -72,37 +102,46 @@ const SliderContainer = styled.div`
   overflow: hidden;
 `;
 
-const SlideWrapper = styled.div<{ currentSlide: number; totalSlides: number }>`
-  display: flex;
-  width: ${(props) => props.totalSlides * 100}vw;
-  height: 110%;
-  transition: transform 0.4s ease-in-out;
-  transform: translateX(${(props) => -props.currentSlide * 100}vw);
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+const SlideViewport = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
-const Slide = styled.div`
-  width: 100vw;
+const SlideImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+`;
+
+const Slide = styled.div<{
+  isVisible: boolean;
+  direction: string;
+  animating: boolean;
+}>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.5s ease;
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
+  transform: ${(props) => {
+    if (props.isVisible) {
+      return 'translateX(0)';
+    } else if (props.direction === 'next') {
+      return props.animating ? 'translateX(-100%)' : 'translateX(100%)';
+    } else {
+      return props.animating ? 'translateX(100%)' : 'translateX(-100%)';
+    }
+  }};
+
+  opacity: ${(props) => (props.isVisible || props.animating ? 1 : 0)};
+  z-index: ${(props) => (props.isVisible ? 2 : 1)};
 `;
 
 const Controls = styled.div`
@@ -112,8 +151,9 @@ const Controls = styled.div`
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
-  padding: 0 100px;
+  padding: 0 20px;
   pointer-events: none;
+  z-index: 10;
 `;
 
 const ControlBtn = styled.button`
@@ -127,15 +167,41 @@ const ControlBtn = styled.button`
   transition: background-color 0.3s;
   cursor: pointer;
   border: none;
-  z-index: 10;
   pointer-events: auto;
 
   &:hover {
     background-color: #061937;
   }
 
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
   img {
     width: 30px;
     height: 30px;
+  }
+`;
+
+const Indicators = styled.div`
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
+`;
+
+const Indicator = styled.div<{ active: boolean }>`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: ${(props) => (props.active ? '#012661' : '#ccc')};
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => (props.active ? '#012661' : '#999')};
   }
 `;
