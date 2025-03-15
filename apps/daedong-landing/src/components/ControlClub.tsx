@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
-import { slide1Icon } from '@daedongyeojido-fe-v3.5/ui';
+import { club4Icon } from '@daedongyeojido-fe-v3.5/ui';
 import { useInterSectionObserve } from '@daedongyeojido-fe-v3.5/hooks';
 
 export const ControlClub = () => {
@@ -21,7 +21,7 @@ export const ControlClub = () => {
         </Ment>
       </div>
       <Img className="animate-element">
-        <img src={slide1Icon} />
+        <img src={club4Icon} />
       </Img>
       <GuideContainer className="animate-element">
         <Guide>
@@ -62,11 +62,23 @@ const Img = styled.div`
   transform: translateX(50px);
   transition: opacity 2s ease-out, transform 2s ease-out;
   transition-delay: 0.3s;
+  margin: 50px 0 100px 0;
+  height: auto;
+  padding-bottom: 50px;
 
   img {
-    margin-top: -5%;
-    max-width: 100%;
+    margin-top: 0;
+    max-width: 85%;
+    width: auto;
     height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: 1200px) {
+    img {
+      max-width: 75%;
+    }
   }
 `;
 
