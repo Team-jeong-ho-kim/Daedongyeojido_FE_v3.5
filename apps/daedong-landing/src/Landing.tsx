@@ -53,7 +53,7 @@ const IntroUs = styled.div`
   flex-direction: column;
   align-items: center;
   opacity: 0.1;
-  transition: opacity 3s ease-out;
+  transition: opacity 5s ease-out;
 
   &.active {
     opacity: 1;
@@ -112,7 +112,7 @@ const IntroDaedong = styled.div`
 `;
 
 const SliderWrapper = styled.div`
-  height: 800px;
+  height: 1000px;
   background: linear-gradient(#ffff, rgba(234, 74, 70, 0.2));
   display: flex;
   flex-direction: column;
@@ -121,6 +121,7 @@ const SliderWrapper = styled.div`
   overflow: hidden;
 
   .arrow {
+    margin-top: 15%;
     animation: bounce 0.6s 0.2s cubic-bezier(0, 0, 0.18, 0.99) infinite
       alternate;
   }

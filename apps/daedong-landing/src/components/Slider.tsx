@@ -79,15 +79,17 @@ export const Slider = () => {
         </ControlBtn>
       </Controls>
 
-      <Indicators>
-        {slides.map((_, index) => (
-          <Indicator
-            key={index}
-            active={index === currentSlide}
-            onClick={() => handleIndicatorClick(index)}
-          />
-        ))}
-      </Indicators>
+      <IndicatorsWrapper>
+        <Indicators>
+          {slides.map((_, index) => (
+            <Indicator
+              key={index}
+              active={index === currentSlide}
+              onClick={() => handleIndicatorClick(index)}
+            />
+          ))}
+        </Indicators>
+      </IndicatorsWrapper>
     </SliderContainer>
   );
 };
@@ -184,24 +186,30 @@ const ControlBtn = styled.button`
   }
 `;
 
-const Indicators = styled.div`
+const IndicatorsWrapper = styled.div`
   position: absolute;
-  bottom: 50px;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 12px;
   z-index: 10;
 `;
 
+const Indicators = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
+
 const Indicator = styled.div<{ active: boolean }>`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: ${(props) => (props.active ? '#012661' : '#ccc')};
+  width: ${(props) => (props.active ? '20px' : '8px')};
+  height: 8px;
+  border-radius: ${(props) => (props.active ? '125px' : '50%')};
+  background-color: ${(props) => (props.active ? '#FF5252' : '#ccc')};
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => (props.active ? '#012661' : '#999')};
+    background-color: ${(props) => (props.active ? '#FF5252' : '#999')};
   }
 `;
