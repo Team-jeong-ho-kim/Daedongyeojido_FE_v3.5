@@ -9,3 +9,4 @@ export { default as inquiryIcon } from './inquiry.svg';
 export * from './slide';
 export * from './arrow';
 export * from './club';
+export * from './bannerIcon';
