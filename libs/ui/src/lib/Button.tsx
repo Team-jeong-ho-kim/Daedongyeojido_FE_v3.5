@@ -60,7 +60,7 @@ const BtnContainer = styled.button<Omit<IButtonType, 'children'>>`
   border-radius: ${({ borderRadius, isDetail }) =>
     isDetail ? '25px' : borderRadius};
   background-color: ${({ isLogin, backgroundColor, opacity, isDetail }) => {
-    if (isDetail) return '#FF7F7F'; // Coral/pink color as shown in the image
+    if (isDetail) return '#FF7F7F';
     if (isLogin) return '#F0E5E5';
     if (!opacity) return backgroundColor;
     if (backgroundColor?.startsWith('#')) {
@@ -90,7 +90,7 @@ const BtnContainer = styled.button<Omit<IButtonType, 'children'>>`
       opacity,
       isDetail,
     }) => {
-      if (isDetail) return '#FF6B6B'; // Slightly darker on hover
+      if (isDetail) return '#FF6B6B';
       if (isLogin) return '#dfdfdf';
       if (!opacity) return backgroundHoverColor;
       if (backgroundHoverColor?.startsWith('#')) {
