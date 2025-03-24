@@ -13,8 +13,8 @@ export const ClubCard = () => {
           동아리설명동아리설명동아리설명동아리설리설명동아리설리설명동아리설
         </IntroClub>
         <CategoryContainer>
-          <Category># 프론트</Category>
-          <Category># 디자이너</Category>
+          <Category>{'# 프론트'}</Category>
+          <Category>{'# 디자이너'}</Category>
         </CategoryContainer>
       </ContentContainer>
     </ClubCardContainer>

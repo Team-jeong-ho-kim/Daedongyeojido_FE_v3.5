@@ -2,8 +2,11 @@ import { Global, css } from '@emotion/react';
 import '@fontsource/pretendard';
 
 const style = css`
+  html,
   body {
     font-family: 'Pretendard';
+    overflow-x: hidden;
+    width: 100%;
   }
 
   * {

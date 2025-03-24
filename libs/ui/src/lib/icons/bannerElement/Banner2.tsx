@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 import { banner2Icon, Button } from '@daedongyeojido-fe-v3.5/ui';
 
 export const Banner2 = () => {
+  const navigate = useNavigate();
+
   return (
     <BannerAll>
       <Ment>
@@ -16,6 +19,7 @@ export const Banner2 = () => {
             color="#ffffff"
             opacity="40%"
             borderRadius="127.7px"
+            onClick={() => navigate('/job-mainBoard')}
           />
         </BottomBtn>
       </Ment>

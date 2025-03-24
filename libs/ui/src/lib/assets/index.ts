@@ -10,3 +10,4 @@ export * from './slide';
 export * from './arrow';
 export * from './club';
 export * from './bannerIcon';
+export * from './interviewProcess';
