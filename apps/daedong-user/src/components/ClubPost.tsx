@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { Button } from '@daedongyeojido-fe-v3.5/ui';
-import { InterviewProcess } from './interviewProcess';
+import { InterviewProcess } from './InterviewProcess';
 
 interface IClubPostProps {
   clubName: string;
@@ -98,7 +98,11 @@ export const ClubPost = ({
             </DetailSection>
 
             <SupportBtnWrapper>
-              <Button children="지원하기" color="white" backgroundHoverColor='#e3746c' />
+              <Button
+                children="지원하기"
+                color="white"
+                backgroundHoverColor="#e3746c"
+              />
             </SupportBtnWrapper>
           </DetailInfoContainer>
         )}
