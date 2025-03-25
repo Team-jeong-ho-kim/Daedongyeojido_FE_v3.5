@@ -7,10 +7,6 @@ export const JobMainBoard = () => {
 
   const navigate = useNavigate();
 
-  const handlePostAddClick = () => {
-    navigate('/createpost'); 
-  };
-
   const sampleClubs = [
     {
       clubName: 'DMS',
@@ -44,14 +40,14 @@ export const JobMainBoard = () => {
     <div>
       <BannerSlider />
       <PostAll>
-        <PostAddButton onClick={handlePostAddClick}>
-          <Button
-            children="공고 추가하기"
-            color="white"
-            borderRadius="12px"
-            width="128px"
-          />
-        </PostAddButton>
+      <PostAddButton onClick={() => navigate('/createpost')}>
+      <Button
+        children="공고 추가하기"
+        color="white"
+        borderRadius="12px"
+        width="128px"
+      />
+    </PostAddButton>
       </PostAll>
       <PostContainer>
         <JobStats>총 {sampleClubs.length}건</JobStats>
