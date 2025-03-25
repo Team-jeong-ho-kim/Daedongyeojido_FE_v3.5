@@ -22,17 +22,17 @@ export const CreatePost = () => {
 
           <div>
             <Label>동아리 소개</Label>
-            <TextArea placeholder="동아리 소개를 300자 이내로 적어주세요." />
+            <TextArea placeholder="동아리 소개를 300자 이내로 적어주세요." maxLength={300} />
           </div>
 
           <div>
             <Label>과제 소개</Label>
-            <TextArea placeholder="동아리 소개를 200자 이내로 적어주세요." />
+            <TextArea placeholder="동아리 소개를 200자 이내로 적어주세요." maxLength={200} />
           </div>
 
           <div>
             <Label>인재상 작성</Label>
-            <TextArea placeholder="동아리 인재상을 300자 이내로 적어주세요." />
+            <TextArea placeholder="동아리 인재상을 300자 이내로 적어주세요." maxLength={300} />
           </div>
 
           <div>
