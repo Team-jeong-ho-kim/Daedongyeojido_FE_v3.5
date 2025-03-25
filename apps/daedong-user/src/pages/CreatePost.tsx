@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { Footer } from "@daedongyeojido-fe-v3.5/ui";
 import { useState } from "react";
 
-type Tag = '디자인' | '프론트엔드' | '백엔드' | 'iOS' | 'Android' | 'AI' | 'embedded' | 'flutter' | 'go' | 'game-dev' | 'security' | 'kotlin' | 'rust' | 'block chain' | 'rust';
-const tags: Tag[] = ['디자인', '프론트엔드', '백엔드', 'iOS', 'Android', 'AI', 'embedded', 'flutter', 'go', 'game-dev', 'security', 'kotlin', 'rust', 'block chain', 'rust'];
+type Tag = '디자인' | '프론트엔드' | '백엔드' | 'iOS' | 'Android' | 'AI' | 'embedded' | 'flutter' | 'go' | 'game-dev' | 'security' | 'kotlin' | 'rust' | 'block chain';
+const tags: Tag[] = ['디자인', '프론트엔드', '백엔드', 'iOS', 'Android', 'AI', 'embedded', 'flutter', 'go', 'game-dev', 'security', 'kotlin', 'rust', 'block chain'];
 
 export const CreatePost = () => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
