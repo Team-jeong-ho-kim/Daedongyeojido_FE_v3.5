@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from './layout';
-import { JobMainBoard, MainPage } from './pages';
 import { ErrorPage } from '@daedongyeojido-fe-v3.5/ui';
+import { JobMainBoard, MainPage , CreatePost } from './pages';
 
 export const Router = createBrowserRouter([
   {
@@ -15,6 +15,10 @@ export const Router = createBrowserRouter([
       {
         path: '/job-mainBoard',
         element: <JobMainBoard />,
+      },
+      {
+        path: '/createPost',
+        element: <CreatePost />,
       },
     ],
   },
