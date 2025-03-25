@@ -132,6 +132,7 @@ const Button = styled.button<{ bg: string; large?: boolean }>`
   font-size: 14px;
   border-radius: 12px;
   background: ${(props) => props.bg};
+  cursor: pointer;
 
   ${(props) =>
     props.large &&
