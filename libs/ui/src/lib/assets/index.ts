@@ -6,6 +6,7 @@ export { default as calendarIcon } from './calendar.svg';
 export { default as logoIcon } from './logo.svg';
 export { default as DaeDaeIcon } from './DAEDAE.svg';
 export { default as inquiryIcon } from './inquiry.svg';
+export { default as error404Icon } from './404.svg';
 export * from './slide';
 export * from './arrow';
 export * from './club';

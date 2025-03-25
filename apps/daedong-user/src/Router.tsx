@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from './layout';
+import { ErrorPage } from '@daedongyeojido-fe-v3.5/ui';
 import { JobMainBoard, MainPage , CreatePost } from './pages';
 
 export const Router = createBrowserRouter([
@@ -20,5 +21,9 @@ export const Router = createBrowserRouter([
         element: <CreatePost />,
       },
     ],
+  },
+  {
+    path: '*', // 404 페에지
+    element: <ErrorPage />,
   },
 ]);
