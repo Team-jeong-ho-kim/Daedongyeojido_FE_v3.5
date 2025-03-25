@@ -1,8 +1,16 @@
 import styled from '@emotion/styled';
 import { BannerSlider, Button, dmsIcon } from '@daedongyeojido-fe-v3.5/ui';
 import { ClubPost } from '../components/ClubPost';
+import { useNavigate } from 'react-router-dom';
 
 export const JobMainBoard = () => {
+
+  const navigate = useNavigate();
+
+  const handlePostAddClick = () => {
+    navigate('/createpost'); 
+  };
+
   const sampleClubs = [
     {
       clubName: 'DMS',
@@ -20,7 +28,7 @@ export const JobMainBoard = () => {
     {
       clubName: '대동여지도',
       postTitle: '[신입부원 모집] 2024 대동여지도 신입 부원 모집',
-      logoSrc: dmsIcon, // 실제 구현 시 적절한 로고로 변경
+      logoSrc: dmsIcon, 
       categories: ['백엔드', '프론트엔드', '디자이너', '안드로이드'],
       deadline: '2025.05.13',
       description:
@@ -36,7 +44,7 @@ export const JobMainBoard = () => {
     <div>
       <BannerSlider />
       <PostAll>
-        <PostAddButton>
+        <PostAddButton onClick={handlePostAddClick}>
           <Button
             children="공고 추가하기"
             color="white"
