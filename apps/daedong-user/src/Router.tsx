@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from './layout';
-import { JobMainBoard, MainPage } from './pages';
+import { JobMainBoard, MainPage , CreatePost } from './pages';
 
 export const Router = createBrowserRouter([
   {
@@ -14,6 +14,10 @@ export const Router = createBrowserRouter([
       {
         path: '/job-mainBoard',
         element: <JobMainBoard />,
+      },
+      {
+        path: '/createPost',
+        element: <CreatePost />,
       },
     ],
   },
