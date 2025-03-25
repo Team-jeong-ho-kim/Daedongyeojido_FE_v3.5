@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 import { GlobalStyle } from '@daedongyeojido-fe-v3.5/design-token';
 import { logoIcon } from '@daedongyeojido-fe-v3.5/ui';
+import { useNavigate } from 'react-router-dom';
 
-export const BaseHeader: React.FC = () => {
+export const BaseHeader = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <GlobalStyle />
       <HeaderContainer>
-        <LeftSection>
+        <LeftSection onClick={() => navigate('/')}>
           <TitleImg>
             <img src={logoIcon} />
           </TitleImg>
@@ -48,6 +52,7 @@ const LeftSection = styled.div`
   font-size: 16px;
   font-weight: bold;
   margin-left: 120px;
+  cursor: pointer;
 
   @media (max-width: 600px) {
     margin-left: 10px;
